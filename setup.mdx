@@ -1,0 +1,172 @@
+---
+title: "Hardal Setup"
+description: "Install and configure Hardal for your web, iOS, and Android applications"
+---
+
+<Info>
+  **Prerequisite**: Before proceeding with the setup, ensure you have your Hardal endpoint URL ready. Your endpoint URL should look like: `https://[your-project-id]-signal.usehardal.com`
+</Info>
+
+## Platform Setup
+
+### Web Integration
+
+Add the following script to your HTML file, preferably in the `<head>` section:
+
+<CodeGroup>
+  ```html
+  <script>
+      !function(h,a,r,d,l) {
+          window.hardalConfig = {
+              endpoint: "https://cm5v9x9f80003tivvx7nr2bjh-signal.usehardal.com",
+              options: {
+                  autoPageview: true,
+                  fetchFromGA4: true,
+                  fetchFromDataLayer: true
+              }
+          };
+          a = document.createElement('script');
+          r = document.getElementsByTagName('script')[0];
+          a.async = 1;
+          a.src = "https://cm5v9x9f80003tivvx7nr2bjh-signal.usehardal.com/hardal";
+          r.parentNode.insertBefore(a, r);
+      }(window);
+  </script>
+  ```
+</CodeGroup>
+
+### iOS Integration
+
+Add this code to your iOS project to initialize Hardal and start sending events:
+
+<CodeGroup>
+  ```swift
+  import Foundation
+
+  // Initialize the Hardal client
+  let hardalEndpoint = "https://cm5v9x9f80003tivvx7nr2bjh-signal.usehardal.com"
+
+  // Send event data
+  func sendEvent(eventName: String, properties: [String: Any]) {
+      guard let url = URL(string: "https://cm5v9x9f80003tivvx7nr2bjh-signal.usehardal.com/push/hardal") else { return }
+      
+      let eventData: [String: Any] = [
+          "event": eventName,
+          "properties": properties,
+          "timestamp": ISO8601DateFormatter().string(from: Date())
+      ]
+      
+      var request = URLRequest(url: url)
+      request.httpMethod = "POST"
+      request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      
+      do {
+          request.httpBody = try JSONSerialization.data(withJSONObject: eventData)
+          
+          URLSession.shared.dataTask(with: request) { data, response, error in
+              if let error = error {
+                  print("Error sending event: \(error)")
+              }
+          }.resume()
+      } catch {
+          print("Error creating request: \(error)")
+      }
+  }
+  ```
+</CodeGroup>
+
+### Android Integration
+
+Add this code to your Android project to initialize Hardal and start sending events:
+
+<CodeGroup>
+  ```kotlin
+  import org.json.JSONObject
+  import java.net.URL
+  import java.time.Instant
+  import javax.net.ssl.HttpsURLConnection
+
+  class HardalClient {
+      private val endpoint = "https://cm5v9x9f80003tivvx7nr2bjh-signal.usehardal.com"
+      
+      fun sendEvent(eventName: String, properties: Map<String, Any>) {
+          Thread {
+              try {
+                  val url = URL("https://cm5v9x9f80003tivvx7nr2bjh-signal.usehardal.com/push/hardal")
+                  val connection = url.openConnection() as HttpsURLConnection
+                  
+                  connection.requestMethod = "POST"
+                  connection.setRequestProperty("Content-Type", "application/json")
+                  connection.doOutput = true
+                  
+                  val eventData = JSONObject().apply {
+                      put("event", eventName)
+                      put("properties", JSONObject(properties))
+                      put("timestamp", Instant.now().toString())
+                  }
+                  
+                  connection.outputStream.use { os ->
+                      os.write(eventData.toString().toByteArray())
+                  }
+                  
+                  val responseCode = connection.responseCode
+                  if (responseCode != HttpsURLConnection.HTTP_OK) {
+                      println("Failed to send event: $responseCode")
+                  }
+              } catch (e: Exception) {
+                  println("Error sending event:")
+              }
+          }.start()
+      }
+  }
+  ```
+</CodeGroup>
+
+## Configuration Options
+
+### Web Configuration
+
+The web integration supports the following configuration options:
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| autoPageview | boolean | true | Automatically track page views |
+| fetchFromGA4 | boolean | true | Collect events from Google Analytics 4 |
+| fetchFromDataLayer | boolean | true | Collect events from dataLayer |
+
+### Mobile Configuration
+
+For iOS and Android integrations, you can customize the following:
+
+- Custom event properties
+- Event batching
+- Retry logic for failed requests
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Web: Script not loading">
+    Ensure that:
+    1. The script is placed in the `<head>` section
+    2. Your endpoint URL is correct
+    3. No ad blockers are interfering with the script
+  </Accordion>
+  <Accordion title="Mobile: Events not being received">
+    Check the following:
+    1. Network connectivity
+    2. Correct endpoint URL configuration
+    3. Valid event format in the request payload
+  </Accordion>
+</AccordionGroup>
+
+## Validation
+
+After integration, you can validate your setup by:
+
+1. Checking the network tab in your browser's developer tools (Web)
+2. Using the debug console in Xcode (iOS)
+3. Monitoring Logcat in Android Studio (Android)
+
+<Tip>
+  For additional support or troubleshooting, contact the Hardal support team or visit our community forum.
+</Tip>
