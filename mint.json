@@ -13,7 +13,7 @@
   },
   "topbarLinks": [
     {
-      "name": "Contact Us",
+      "name": "Support",
       "url": "mailto:support@usehardal.com"
     }
   ],
@@ -56,12 +56,24 @@
       ]
     },
     {
-      "group": "Server-Side Connections",
+      "group": "Server-Side Hosts",
       "pages": [
-        "server-side/introduction",
-        "server-side/adjust",
-        "server-side/server-side-google-tag-manager",
-        "server-side/meta-capi"
+        "server-side-hosts/introduction",
+        "server-side-hosts/server-side-google-tag-manager",
+        "server-side-hosts/meta-capi"
+      ]
+    },
+    {
+      "group": "Analytics",
+      "pages": [
+        "analytics/introduction"
+      ]
+    },
+    {
+      "group": "Server-to-Server Connections",
+      "pages": [
+        "server-to-server/introduction",
+        "server-to-server/adjust"
       ]
     },
     {
