@@ -23,10 +23,10 @@
   },
   "anchors": [
     {
-      "name": "Integrations",
-      "icon": "plug",
+      "name": "Marketing Destinations",
+      "icon": "share-nodes",
       "color": "#0D9373",
-      "url": "integrations/introduction"
+      "url": "destinations/introduction"
     },
     {
       "name": "Community",
@@ -46,24 +46,37 @@
       "group": "Getting Started",
       "pages": [
         "introduction",
-        "quickstart",
+        {
+          "group": "Quickstart",
+          "pages": [
+            "quickstart/analytics-sdk",
+            "quickstart/server-hosts",
+            "quickstart/custom-dashboard"
+          ]
+        },
         "setup"
       ]
     },
     {
-      "group": "Integrations",
+      "group": "Server-Side Connections",
       "pages": [
-        "integrations/introduction",
-        "integrations/zapier",
-        "integrations/slack",
-        "integrations/webhooks",
-        "integrations/google-analytics"
+        "server-side/introduction",
+        "server-side/adjust",
+        "server-side/gtm-server",
+        "server-side/meta-capi"
       ]
     },
     {
-      "group": "API Reference",
+      "group": "Marketing Destinations",
       "pages": [
-        "api-reference/introduction"
+        "destinations/introduction",
+        "destinations/google-analytics",
+        "destinations/firebase",
+        "destinations/pipedream",
+        "destinations/zapier",
+        "destinations/slack",
+        "destinations/tiktok",
+        "destinations/custom-api"
       ]
     },
     {

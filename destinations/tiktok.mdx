@@ -1,0 +1,51 @@
+---
+title: 'TikTok Events API'
+description: 'Send conversion events to TikTok Ads'
+---
+
+## Overview
+
+Send your Hardal analytics events directly to TikTok Events API for conversion tracking and audience building.
+
+## Configuration
+
+1. Go to your Hardal dashboard
+2. Navigate to Marketing Destinations
+3. Click "Add Custom Destination"
+4. Select "TikTok Events API" from templates
+
+## Endpoint Configuration
+
+```json
+{
+  "endpoint_label": "TikTok Events",
+  "endpoint_id": "tiktok-events",
+  "endpoint_url": "https://business-api.tiktok.com/open_api/v1.2/pixel/track/",
+  "request_method": "POST",
+  "content_type": "application/json",
+  "request_format": {
+    "pixel_code": "YOUR_PIXEL_ID",
+    "event": "##event_name##",
+    "timestamp": "##created_at##",
+    "properties": {
+      "currency": "##properties.currency##",
+      "value": "##properties.value##",
+      "contents": "##properties.contents##"
+    }
+  }
+}
+```
+
+## Supported Events
+
+- `Purchase`
+- `AddToCart`
+- `ViewContent`
+- `CompleteRegistration`
+- `InitiateCheckout`
+
+## Event Properties
+
+- `currency`: Transaction currency (ISO 4217)
+- `value`: Transaction value
+- `contents`: Array of products 

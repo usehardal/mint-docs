@@ -1,0 +1,46 @@
+---
+title: 'Pipedream Integration'
+description: 'Send events to Pipedream workflows'
+---
+
+## Overview
+
+Send your Hardal analytics events to Pipedream to create powerful automated workflows.
+
+## Configuration
+
+1. Go to your Hardal dashboard
+2. Navigate to Marketing Destinations
+3. Click "Add Custom Destination"
+4. Select "Pipedream" from templates
+
+## Endpoint Configuration
+
+```json
+{
+  "endpoint_label": "Pipedream",
+  "endpoint_id": "pipedream-workflow",
+  "endpoint_url": "https://endpoint.m.pipedream.net/YOUR_WORKFLOW_ID",
+  "request_method": "POST",
+  "content_type": "application/json",
+  "request_format": {
+    "event_name": "##event_name##",
+    "properties": "##properties##",
+    "created_at": "##created_at##"
+  }
+}
+```
+
+## Available Properties
+
+- `event_name`: The name of the triggered event
+- `properties`: Custom properties of the event
+- `created_at`: Timestamp of when the event occurred
+- `user_id`: Unique identifier of the user
+- `session_id`: Current session identifier
+
+## Best Practices
+
+- Use Pipedream's built-in transformers to format data
+- Set up error handling in your workflows
+- Monitor your workflow execution history 

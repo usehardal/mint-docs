@@ -1,0 +1,100 @@
+---
+title: 'Meta Conversion API'
+description: 'Send server-side events to Meta (Facebook) Ads'
+---
+
+## Overview
+
+Send your Hardal analytics events directly to Meta (Facebook) Conversion API for enhanced conversion tracking and better ad performance.
+
+## Configuration
+
+1. Go to your Hardal dashboard
+2. Navigate to Marketing Destinations
+3. Click "Add Custom Destination"
+4. Select "Meta Conversion API" from templates
+
+## Endpoint Configuration
+
+```json
+{
+  "endpoint_label": "Meta CAPI",
+  "endpoint_id": "meta-conversion-api",
+  "endpoint_url": "https://graph.facebook.com/v17.0/YOUR_PIXEL_ID/events",
+  "request_method": "POST",
+  "content_type": "application/json",
+  "request_format": {
+    "data": [
+      {
+        "event_name": "##event_name##",
+        "event_time": "##created_at##",
+        "event_source_url": "##page.url##",
+        "action_source": "website",
+        "user_data": {
+          "em": "##user.email##",
+          "ph": "##user.phone##",
+          "external_id": "##user_id##"
+        },
+        "custom_data": {
+          "currency": "##properties.currency##",
+          "value": "##properties.value##",
+          "content_ids": "##properties.product_ids##",
+          "content_type": "product"
+        }
+      }
+    ]
+  },
+  "headers": {
+    "Authorization": "Bearer YOUR_ACCESS_TOKEN"
+  }
+}
+```
+
+## Supported Events
+
+- `Purchase`
+- `AddToCart`
+- `InitiateCheckout`
+- `ViewContent`
+- `Lead`
+- `CompleteRegistration`
+- `Subscribe`
+- `Contact`
+- `AddToWishlist`
+- `Search`
+
+## Event Parameters
+
+### User Data
+- `em`: Hashed email address
+- `ph`: Hashed phone number
+- `external_id`: Your user identifier
+- `client_ip_address`: User's IP address
+- `client_user_agent`: User's browser agent
+- `fbc`: Facebook click identifier
+- `fbp`: Facebook browser identifier
+
+### Custom Data
+- `currency`: Transaction currency (ISO 4217)
+- `value`: Transaction value
+- `content_ids`: Array of product IDs
+- `content_type`: Type of content ("product", "product_group")
+- `content_name`: Name of the content
+- `content_category`: Category of the content
+- `order_id`: Order identifier
+
+## Best Practices
+
+- Hash all PII (Personally Identifiable Information) before sending
+- Include as many user identifiers as possible
+- Set correct currency and value formats
+- Use standard event names when possible
+- Include Facebook click (fbc) and browser (fbp) parameters
+- Implement proper error handling
+
+## Testing
+
+1. Use the "Test Events" feature in Events Manager
+2. Verify events in the Test Events tab
+3. Check for warnings and errors in the diagnostics
+4. Monitor your events quality score 

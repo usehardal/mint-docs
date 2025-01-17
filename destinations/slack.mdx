@@ -1,0 +1,70 @@
+---
+title: 'Slack Webhook'
+description: 'Send analytics events to Slack channels'
+---
+
+## Overview
+
+Send your Hardal analytics events to Slack channels using Incoming Webhooks.
+
+## Configuration
+
+1. Go to your Hardal dashboard
+2. Navigate to Marketing Destinations
+3. Click "Add Custom Destination"
+4. Select "Slack Webhook" from templates
+
+## Endpoint Configuration
+
+```json
+{
+  "endpoint_label": "Slack Notifications",
+  "endpoint_id": "slack-webhook",
+  "endpoint_url": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL",
+  "request_method": "POST",
+  "content_type": "application/json",
+  "request_format": {
+    "text": "New Event: ##event_name##\nProperties: ##properties##\nTime: ##created_at##"
+  }
+}
+```
+
+## Message Formatting
+
+Customize your Slack messages using blocks:
+
+```json
+{
+  "request_format": {
+    "blocks": [
+      {
+        "type": "header",
+        "text": {
+          "type": "plain_text",
+          "text": "New Event: ##event_name##"
+        }
+      },
+      {
+        "type": "section",
+        "fields": [
+          {
+            "type": "mrkdwn",
+            "text": "*Properties:*\n##properties##"
+          },
+          {
+            "type": "mrkdwn",
+            "text": "*Time:*\n##created_at##"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+## Best Practices
+
+- Use meaningful channel names
+- Format messages for readability
+- Set up proper notification settings
+- Consider rate limiting for high-volume events 

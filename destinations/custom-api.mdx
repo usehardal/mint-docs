@@ -1,0 +1,64 @@
+---
+title: 'Custom API Integration'
+description: 'Build your own custom destination integration'
+---
+
+## Overview
+
+Create a custom destination to send Hardal analytics events to any HTTP endpoint with configurable format and headers.
+
+## Configuration
+
+1. Go to your Hardal dashboard
+2. Navigate to Marketing Destinations
+3. Click "Add Custom Destination"
+4. Start with a blank template
+
+## Endpoint Configuration
+
+```json
+{
+  "endpoint_label": "My Endpoint",
+  "endpoint_id": "my-endpoint",
+  "endpoint_url": "https://api.example.com/analytics",
+  "request_method": "POST",
+  "content_type": "application/json",
+  "request_format": {
+    "event_name": "##event_name##",
+    "properties": "##properties##",
+    "created_at": "##created_at##"
+  }
+}
+```
+
+## Available Variables
+
+Use these variables in your request format:
+
+- `##event_name##`: Name of the event
+- `##properties##`: Event properties object
+- `##created_at##`: Event timestamp
+- `##user_id##`: User identifier
+- `##session_id##`: Session identifier
+- `##page.url##`: Current page URL
+- `##page.title##`: Page title
+- `##page.referrer##`: Referrer URL
+
+## Additional Headers
+
+You can add custom headers for authentication or other purposes:
+
+```json
+{
+  "headers": {
+    "Authorization": "Bearer YOUR_API_KEY",
+    "X-Custom-Header": "custom-value"
+  }
+}
+```
+
+## Testing
+
+1. Use the "Test Endpoint" button to verify your configuration
+2. Check the response status and body
+3. Monitor the Events Log for delivery status 
