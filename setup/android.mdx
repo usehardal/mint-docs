@@ -1,0 +1,102 @@
+---
+title: "Android SDK"
+description: "Install and configure Hardal for your Android applications"
+---
+
+## Installation
+
+Add this code to your Android project to initialize Hardal and start sending events:
+
+<CodeGroup>
+```kotlin
+import org.json.JSONObject
+import java.net.URL
+import java.time.Instant
+import javax.net.ssl.HttpsURLConnection
+
+class HardalClient {
+    private val endpoint = "https://<your-hardal-signal-id>-signal.usehardal.com"
+    
+    fun sendEvent(eventName: String, properties: Map<String, Any>) {
+        Thread {
+            try {
+                val url = URL("https://<your-hardal-signal-id>-signal.usehardal.com/push/hardal")
+                val connection = url.openConnection() as HttpsURLConnection
+                
+                connection.requestMethod = "POST"
+                connection.setRequestProperty("Content-Type", "application/json")
+                connection.doOutput = true
+                
+                val eventData = JSONObject().apply {
+                    put("event", eventName)
+                    put("properties", JSONObject(properties))
+                    put("timestamp", Instant.now().toString())
+                }
+                
+                connection.outputStream.use { os ->
+                    os.write(eventData.toString().toByteArray())
+                }
+                
+                val responseCode = connection.responseCode
+                if (responseCode != HttpsURLConnection.HTTP_OK) {
+                    println("Failed to send event: $responseCode")
+                }
+            } catch (e: Exception) {
+                println("Error sending event: ${e.message}")
+            }
+        }.start()
+    }
+}
+```
+</CodeGroup>
+
+## Configuration Options
+
+For Android integration, you can customize the following:
+
+- Custom event properties
+- Event batching
+- Retry logic for failed requests
+- Background thread management
+
+### Example Usage
+
+```kotlin
+// Initialize the client
+val hardalClient = HardalClient()
+
+// Track a custom event
+hardalClient.sendEvent(
+    eventName = "purchase_completed",
+    properties = mapOf(
+        "product_id" to "123",
+        "price" to 99.99,
+        "currency" to "USD"
+    )
+)
+```
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Events not being received">
+    Check the following:
+    1. Network connectivity
+    2. Correct endpoint URL configuration
+    3. Valid event format in the request payload
+    4. Internet permissions in AndroidManifest.xml
+  </Accordion>
+</AccordionGroup>
+
+## Validation
+
+To validate your Android integration:
+
+1. Monitor Logcat in Android Studio
+2. Use the Network Profiler to inspect requests
+3. Check for successful HTTP responses (200 status code)
+4. Verify events appear in your Hardal dashboard
+
+<Tip>
+  For development, you can enable detailed logging by setting the log level to VERBOSE in your application's debug configuration.
+</Tip> 

@@ -1,0 +1,91 @@
+---
+title: "iOS SDK"
+description: "Install and configure Hardal for your iOS applications"
+---
+
+## Installation
+
+Add this code to your iOS project to initialize Hardal and start sending events:
+
+<CodeGroup>
+```swift
+import Foundation
+
+// Initialize the Hardal client
+let hardalEndpoint = "https://<your-hardal-signal-id>-signal.usehardal.com"
+
+// Send event data
+func sendEvent(eventName: String, properties: [String: Any]) {
+    guard let url = URL(string: "https://<your-hardal-signal-id>-signal.usehardal.com/push/hardal") else { return }
+    
+    let eventData: [String: Any] = [
+        "event": eventName,
+        "properties": properties,
+        "timestamp": ISO8601DateFormatter().string(from: Date())
+    ]
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+    do {
+        request.httpBody = try JSONSerialization.data(withJSONObject: eventData)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error sending event: \(error)")
+            }
+        }.resume()
+    } catch {
+        print("Error creating request: \(error)")
+    }
+}
+```
+</CodeGroup>
+
+## Configuration Options
+
+For iOS integration, you can customize the following:
+
+- Custom event properties
+- Event batching
+- Retry logic for failed requests
+
+### Example Usage
+
+```swift
+// Track a custom event
+sendEvent(
+    eventName: "purchase_completed",
+    properties: [
+        "product_id": "123",
+        "price": 99.99,
+        "currency": "USD"
+    ]
+)
+```
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Events not being received">
+    Check the following:
+    1. Network connectivity
+    2. Correct endpoint URL configuration
+    3. Valid event format in the request payload
+    4. App Transport Security (ATS) settings
+  </Accordion>
+</AccordionGroup>
+
+## Validation
+
+To validate your iOS integration:
+
+1. Use the debug console in Xcode
+2. Monitor network requests in the debug navigator
+3. Check for successful HTTP responses (200 status code)
+4. Verify events appear in your Hardal dashboard
+
+<Tip>
+  Enable verbose logging in debug builds to get detailed information about event tracking and network requests.
+</Tip> 

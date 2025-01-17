@@ -49,9 +49,9 @@
         {
           "group": "Setup",
           "pages": [
-            "setup#web-sdk",
-            "setup#ios",
-            "setup#android"
+            "web",
+            "ios",
+            "android"
           ]
         }
       ]

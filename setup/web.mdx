@@ -1,0 +1,65 @@
+---
+title: "Web SDK"
+description: "Install and configure Hardal for your web applications"
+---
+
+## Installation
+
+Add the following script to your HTML file, preferably in the `<head>` section:
+
+<CodeGroup>
+```html
+<script>
+    !function(h,a,r,d,l) {
+        window.hardalConfig = {
+            endpoint: "https://<your-hardal-signal-id>-signal.usehardal.com",
+            options: {
+                autoPageview: true,
+                fetchFromGA4: true,
+                fetchFromDataLayer: true
+            }
+        };
+        a = document.createElement('script');
+        r = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = "https://<your-hardal-signal-id>-signal.usehardal.com/hardal";
+        r.parentNode.insertBefore(a, r);
+    }(window);
+</script>
+```
+</CodeGroup>
+
+## Configuration Options
+
+The web integration supports the following configuration options:
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| autoPageview | boolean | true | Automatically track page views |
+| fetchFromGA4 | boolean | true | Collect events from Google Analytics 4 |
+| fetchFromDataLayer | boolean | true | Collect events from dataLayer |
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Script not loading">
+    Ensure that:
+    1. The script is placed in the `<head>` section
+    2. Your endpoint URL is correct
+    3. No ad blockers are interfering with the script
+  </Accordion>
+</AccordionGroup>
+
+## Validation
+
+To validate your web integration:
+
+1. Open your browser's developer tools
+2. Go to the Network tab
+3. Refresh your page
+4. Look for requests to your Hardal endpoint
+5. Verify that events are being sent successfully
+
+<Tip>
+  Enable debug mode by setting `window.hardalConfig.debug = true` to see detailed logging in the browser console.
+</Tip> 

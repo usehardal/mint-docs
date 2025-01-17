@@ -1,9 +1,9 @@
 ---
-title: 'Server-to-Server Connections'
+title: 'Overview'
 description: 'Connect your data to external systems using server-to-server (s2s) connections'
 ---
 
-## Overview
+## Server-to-Server Connections
 
 Server-to-server connections allow you to send data from your server to external systems.
 
