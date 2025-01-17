@@ -1,0 +1,95 @@
+---
+title: 'Adjust S2S Integration'
+description: 'Server-to-server integration with Adjust mobile measurement'
+---
+
+## Overview
+
+The Adjust server-to-server (S2S) integration allows you to send conversion and event data directly to Adjust from your servers for reliable mobile measurement.
+
+## Prerequisites
+
+1. Adjust App Token
+2. Adjust Event Tokens
+3. Adjust API credentials
+
+## Configuration
+
+1. Go to your Hardal dashboard
+2. Navigate to Server-to-Server
+3. Click "Add Connection"
+4. Select "Adjust S2S"
+
+## Connection Settings
+
+```json
+{
+  "connection_label": "Adjust S2S",
+  "connection_id": "adjust-s2s",
+  "app_token": "YOUR_APP_TOKEN",
+  "environment": "production",
+  "event_tokens": {
+    "purchase": "abc123",
+    "registration": "def456",
+    "tutorial_complete": "ghi789"
+  }
+}
+```
+
+## Event Mapping
+
+Map your Hardal events to Adjust events:
+
+```json
+{
+  "event_mapping": {
+    "purchase": {
+      "token": "abc123",
+      "revenue": "##properties.revenue##",
+      "currency": "##properties.currency##",
+      "product_id": "##properties.product_id##"
+    },
+    "registration": {
+      "token": "def456",
+      "user_id": "##user_id##"
+    }
+  }
+}
+```
+
+## Available Parameters
+
+### Event Parameters
+- `event_token`: Adjust event token
+- `revenue`: Event revenue amount
+- `currency`: Transaction currency
+- `product_id`: Product identifier
+- `order_id`: Order identifier
+- `callback_params`: Custom callback parameters
+- `partner_params`: Partner parameters
+
+### User Parameters
+- `app_token`: Your Adjust app token
+- `idfa`: iOS Advertising Identifier
+- `idfv`: iOS Vendor Identifier
+- `gps_adid`: Google Play Services Advertising ID
+- `android_id`: Android ID
+- `ip_address`: User's IP address
+- `user_agent`: User's device user agent
+
+## Best Practices
+
+- Use appropriate event tokens
+- Include revenue data when applicable
+- Implement proper error handling
+- Monitor event delivery status
+- Use test mode during development
+- Validate data in Adjust dashboard
+
+## Testing
+
+1. Enable test mode in connection settings
+2. Send test events
+3. Verify in Adjust dashboard
+4. Check callback parameters
+5. Monitor conversion tracking

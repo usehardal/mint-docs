@@ -49,9 +49,7 @@
         {
           "group": "Quickstart",
           "pages": [
-            "quickstart/analytics-sdk",
-            "quickstart/server-hosts",
-            "quickstart/custom-dashboard"
+            "quickstart/server-side-hosts"
           ]
         },
         "setup"
@@ -62,7 +60,7 @@
       "pages": [
         "server-side/introduction",
         "server-side/adjust",
-        "server-side/gtm-server",
+        "server-side/server-side-google-tag-manager",
         "server-side/meta-capi"
       ]
     },

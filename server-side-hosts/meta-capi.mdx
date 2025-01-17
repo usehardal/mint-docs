@@ -1,0 +1,99 @@
+---
+title: 'Meta CAPI Gateway'
+description: 'Direct server-side conversion tracking for Meta Ads'
+---
+
+## Overview
+
+The Meta Conversion API Gateway host enables server-side conversion tracking for Meta (Facebook) Ads with enhanced features and reliability.
+
+## Prerequisites
+
+1. Meta Business Manager account
+2. Meta Pixel ID
+3. Meta CAPI Access Token
+
+## Configuration
+
+1. Go to your Hardal dashboard
+2. Navigate to Server Hosts
+3. Click "Add Host"
+4. Select "Meta CAPI Gateway"
+
+## Host Settings
+
+```json
+{
+  "host_label": "Meta CAPI Gateway",
+  "host_id": "meta-capi-gateway",
+  "pixel_id": "PIXEL_ID",
+  "access_token": "ACCESS_TOKEN",
+  "test_event_code": "TEST_EVENT_CODE",
+  "enable_batching": true,
+  "batch_size": 50
+}
+```
+
+## Features
+
+- Automatic event batching
+- Real-time event validation
+- Automatic PII hashing
+- Test event support
+- Conversion lift optimization
+- Advanced matching parameters
+
+## Event Processing
+
+The gateway automatically processes:
+
+1. User Data Hashing
+```javascript
+{
+  "em": "user@example.com" -> "hash_value",
+  "ph": "+1234567890" -> "hash_value"
+}
+```
+
+2. Event Batching
+```javascript
+{
+  "data": [
+    { /* event 1 */ },
+    { /* event 2 */ },
+    // ... up to batch_size
+  ]
+}
+```
+
+## Advanced Matching
+
+Available parameters:
+
+- Email (`em`)
+- Phone (`ph`)
+- Gender (`ge`)
+- Date of Birth (`db`)
+- Last Name (`ln`)
+- First Name (`fn`)
+- City (`ct`)
+- State (`st`)
+- Zip (`zp`)
+- Country (`country`)
+
+## Best Practices
+
+- Enable event batching for high-volume sites
+- Use test events during development
+- Include as many matching parameters as possible
+- Monitor conversion quality score
+- Implement proper error handling
+- Regular token rotation
+
+## Testing
+
+1. Set up test events in Events Manager
+2. Use test_event_code during development
+3. Monitor Events Manager diagnostics
+4. Check conversion quality score
+5. Verify events in real-time 

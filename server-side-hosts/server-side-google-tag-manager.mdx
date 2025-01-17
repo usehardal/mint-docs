@@ -1,0 +1,93 @@
+---
+title: 'Server-side Google Tag Manager'
+description: 'Process and route data through GTM server-side container'
+---
+
+## Overview
+
+The Google Tag Manager server-side host allows you to process and route your Hardal analytics data through your GTM server container.
+
+## Prerequisites
+
+1. A Google Tag Manager server container
+2. Google Cloud Platform project
+3. Server-side tagging domain configured
+
+## Configuration
+
+1. Go to your Hardal dashboard
+2. Navigate to Server Hosts
+3. Click "Add Host"
+4. Select "Google Tag Manager Server"
+
+## Host Settings
+
+```json
+{
+  "host_label": "GTM Server",
+  "host_id": "server-side-google-tag-manager",
+  "container_url": "https://your-gtm-domain.com",
+  "measurement_id": "G-XXXXXXXXXX",
+  "client_name": "hardal-analytics",
+  "preview_mode": false
+}
+```
+
+## Available Features
+
+- Custom client configuration
+- Event filtering and transformation
+- Multiple endpoints support
+- Advanced routing rules
+- Preview mode for testing
+
+## Client Configuration
+
+In your GTM server container:
+
+1. Create a new Client
+2. Set Client Name to match your Hardal configuration
+3. Configure Client Fields:
+   - `clientId`
+   - `timestamp`
+   - `page_location`
+   - `page_title`
+   - `event_name`
+
+## Tag Configuration
+
+Example GA4 tag setup:
+
+```javascript
+const eventData = getAllEventData();
+const clientName = getRequestHeader('x-hardal-client');
+
+if (clientName === 'hardal-analytics') {
+  const gaTag = {
+    event_name: eventData.event_name,
+    client_id: eventData.client_id,
+    timestamp: eventData.timestamp,
+    page_location: eventData.page_location,
+    page_title: eventData.page_title,
+    // ... additional parameters
+  };
+  
+  sendToGA4(gaTag);
+}
+```
+
+## Best Practices
+
+- Use proper event validation
+- Set up monitoring
+- Configure error handling
+- Implement proper security measures
+- Use preview mode for testing
+- Monitor server resources
+
+## Testing
+
+1. Enable preview mode in host settings
+2. Use GTM preview mode to debug
+3. Check server container logs
+4. Verify data in connected platforms 
