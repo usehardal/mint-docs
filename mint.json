@@ -49,9 +49,9 @@
         {
           "group": "Setup",
           "pages": [
-            "web",
-            "ios",
-            "android"
+            "/setup/web",
+            "/setup/ios",
+            "/setup/android"
           ]
         }
       ]
