@@ -47,12 +47,13 @@
       "pages": [
         "introduction",
         {
-          "group": "Quickstart",
+          "group": "Setup",
           "pages": [
-            "quickstart/server-side-hosts"
+            "setup#web-sdk",
+            "setup#ios",
+            "setup#android"
           ]
-        },
-        "setup"
+        }
       ]
     },
     {
@@ -66,7 +67,8 @@
     {
       "group": "Analytics",
       "pages": [
-        "analytics/introduction"
+        "analytics/introduction",
+        "analytics/introduction#creating-custom-dashboards"
       ]
     },
     {
@@ -80,7 +82,7 @@
       "group": "Marketing Destinations",
       "pages": [
         "destinations/introduction",
-        "destinations/google-analytics",
+        "destinations/ga4-measurement-protocol",
         "destinations/firebase",
         "destinations/pipedream",
         "destinations/zapier",
