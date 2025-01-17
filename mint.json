@@ -2,22 +2,18 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Hardal",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
-    "dark": "#0D9373",
-    "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
-    }
+    "dark": "#0D9373"
   },
   "topbarLinks": [
     {
-      "name": "Support",
+      "name": "Contact Us",
       "url": "mailto:support@usehardal.com"
     }
   ],
@@ -25,39 +21,60 @@
     "name": "Dashboard",
     "url": "https://app.usehardal.com"
   },
-  "tabs": [
-    {
-      "name": "Changelog",
-      "url": "changelog"
-    },
-       {
-      "name": "Integgrations",
-      "url": "integration/"
-    }
-  ],
   "anchors": [
     {
+      "name": "Integrations",
+      "icon": "plug",
+      "color": "#0D9373",
+      "url": "integrations/introduction"
+    },
+    {
       "name": "Community",
-      "icon": "life-ring",
+      "icon": "comments",
+      "color": "#2564eb",
       "url": "https://forum.usehardal.com"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
+      "color": "#f59f0b",
       "url": "https://usehardal.com/blog"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Getting Started",
       "pages": [
         "introduction",
         "quickstart",
         "setup"
       ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "integrations/introduction",
+        "integrations/zapier",
+        "integrations/slack",
+        "integrations/webhooks",
+        "integrations/google-analytics"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "api-reference/introduction"
+      ]
+    },
+    {
+      "group": "Changelog",
+      "pages": [
+        "changelog/changelog"
+      ]
     }
   ],
   "footerSocials": {
+    "github": "https://github.com/usehardal",
     "x": "https://x.com/usehardal",
     "linkedin": "https://linkedin.com/company/usehardal"
   }
