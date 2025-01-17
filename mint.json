@@ -29,12 +29,16 @@
     {
       "name": "Changelog",
       "url": "changelog"
+    },
+       {
+      "name": "Integgrations",
+      "url": "integration/"
     }
   ],
   "anchors": [
     {
       "name": "Community",
-      "icon": "community",
+      "icon": "life-ring",
       "url": "https://forum.usehardal.com"
     },
     {
