@@ -1,9 +1,9 @@
 ---
-title: 'Analytics'
+title: 'Overview'
 description: 'Create custom metrics using SQL queries in Analytics Dashboard'
 ---
 
-## Overview
+## Analytics
 
 Hardal Analytics provides comprehensive insights into your application's performance and user behavior through both pre-built metrics and custom SQL queries. The analytics dashboard offers cookieless tracking capabilities while maintaining user privacy.
 
