@@ -18,7 +18,7 @@ Add the following script to your HTML file, preferably in the `<head>` section:
   <script>
       !function(h,a,r,d,l) {
           window.hardalConfig = {
-              endpoint: "https://cm5v9x9f80003tivvx7nr2bjh-signal.usehardal.com",
+              endpoint: "https://<your-hardal-signal-id>-signal.usehardal.com",
               options: {
                   autoPageview: true,
                   fetchFromGA4: true,
@@ -28,7 +28,7 @@ Add the following script to your HTML file, preferably in the `<head>` section:
           a = document.createElement('script');
           r = document.getElementsByTagName('script')[0];
           a.async = 1;
-          a.src = "https://cm5v9x9f80003tivvx7nr2bjh-signal.usehardal.com/hardal";
+          a.src = "https://<your-hardal-signal-id>-signal.usehardal.com/hardal";
           r.parentNode.insertBefore(a, r);
       }(window);
   </script>
@@ -44,11 +44,11 @@ Add this code to your iOS project to initialize Hardal and start sending events:
   import Foundation
 
   // Initialize the Hardal client
-  let hardalEndpoint = "https://cm5v9x9f80003tivvx7nr2bjh-signal.usehardal.com"
+  let hardalEndpoint = "https://<your-hardal-signal-id>-signal.usehardal.com"
 
   // Send event data
   func sendEvent(eventName: String, properties: [String: Any]) {
-      guard let url = URL(string: "https://cm5v9x9f80003tivvx7nr2bjh-signal.usehardal.com/push/hardal") else { return }
+      guard let url = URL(string: "https://<your-hardal-signal-id>-signal.usehardal.com/push/hardal") else { return }
       
       let eventData: [String: Any] = [
           "event": eventName,
@@ -87,12 +87,12 @@ Add this code to your Android project to initialize Hardal and start sending eve
   import javax.net.ssl.HttpsURLConnection
 
   class HardalClient {
-      private val endpoint = "https://cm5v9x9f80003tivvx7nr2bjh-signal.usehardal.com"
+      private val endpoint = "https://<your-hardal-signal-id>-signal.usehardal.com"
       
       fun sendEvent(eventName: String, properties: Map<String, Any>) {
           Thread {
               try {
-                  val url = URL("https://cm5v9x9f80003tivvx7nr2bjh-signal.usehardal.com/push/hardal")
+                  val url = URL("https://<your-hardal-signal-id>-signal.usehardal.com/push/hardal")
                   val connection = url.openConnection() as HttpsURLConnection
                   
                   connection.requestMethod = "POST"
