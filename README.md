@@ -1,32 +1,33 @@
-# Mintlify Starter Kit
+## Hardal
 
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
+Hardal is a server-side gateway platform to set up your server-side measurement environment without burnout. 🔥
 
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+> Making easy cookieless analytics, first-party custom server-to-server endpoints, and fast server-side measurement for Server-side Google Tag Manager (sGTM), Meta Conversions API (CAPI), and server-side API endpoints with custom domains.
 
-### Development
+This documentation will guide you through the process of setting up and using Hardal.
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+We understand that measuring server-side performance and analytics is important, and we know how difficult it can be to build In-house endpoint development sometimes.
 
-```
-npm i -g mintlify
-```
+## Quick Start
 
-Run the following command at the root of your documentation (where mint.json is)
+To start using Hardal, first you need to [create an account(opens in a new tab)](https://app.usehardal.com/) and then create a new project.
 
-```
-mintlify dev
-```
+[Additional Features:](https://docs.usehardal.com/getting-started/create-project)
 
-### Publishing Changes
+* Unlimited Meta pixels and events for Meta CAPI Gateway
 
-Install our Github App to auto propagate changes from your repo to your deployment. Changes will be deployed to production automatically after pushing to the default branch. Find the link to install on your dashboard. 
+* Ultra customizable request plans for sGTM Container
 
-#### Troubleshooting
+* CLI and management API Support
 
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with `mint.json`
+* 15+ Cloud locations
+
+* Save GCP/AWS cost
+
+* Multi custom domains
+
+* Integrated with Hardal Gateway API to stream all secure and cookieless first-party data to BigQuery, Google Sheet or your endpoint.
+
+### What is the meaning of Hardal?
+
+*Hardal* (Turkish word for "mustard", pronounced /hardal/, like "hard" and "al").
