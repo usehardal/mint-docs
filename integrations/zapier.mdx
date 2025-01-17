@@ -13,19 +13,36 @@ Our Zapier integration allows you to connect your application with 3000+ apps an
 2. Click "Accept Invite" to get access to the integration
 3. Create a new Zap and choose your application as the trigger or action
 
-## Available Triggers
 
-- New User Created
-- New Order Placed
-- Status Updated
+## Using the Data in Zapier
 
-## Available Actions
+1. In Zapier, create a new Zap
+2. Choose "Webhooks by Zapier" as your trigger app
+3. Select "Catch Hook" as the trigger event
+4. Use the provided webhook URL in your Hardal configuration
+5. Test the connection to ensure data is flowing correctly
 
-- Create User
-- Update Order Status
-- Send Notification
+## Available Event Properties
 
-## Authentication
+Your Zapier actions will receive the following data from Hardal:
 
-1. Generate an API key from your dashboard
-2. Use the API key when connecting your Zapier account 
+- `page_url`: The URL where the event occurred
+- `page_title`: The title of the page
+- `referrer`: The referring URL
+- Additional custom properties based on your tracking setup
+
+## Best Practices
+
+- Test your webhook connection before setting up complex automation
+- Set up error notifications in Zapier to monitor for failed webhook deliveries
+- Consider adding custom filtering in Zapier to process only specific events
+- Use Zapier's built-in formatting tools to transform the data as needed
+
+## Troubleshooting
+
+If you're not receiving data in Zapier:
+
+1. Verify your webhook URL is correctly copied to Hardal
+2. Ensure your Zap is turned on
+3. Check that your Hardal events are being triggered
+4. Verify the request format matches Zapier's expectations
