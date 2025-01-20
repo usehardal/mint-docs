@@ -47,12 +47,13 @@
       "pages": [
         "introduction",
         {
-          "group": "Quickstart",
+          "group": "Setup",
           "pages": [
-            "quickstart/server-side-hosts"
+            "setup/web",
+            "setup/ios",
+            "setup/android"
           ]
-        },
-        "setup"
+        }
       ]
     },
     {
