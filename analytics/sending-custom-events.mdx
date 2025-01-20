@@ -16,6 +16,7 @@ The simplest form of tracking is sending just an event name:
 ```javascript
 hardal.track("test_event")
 ```
+
 <Tip>
   You can run this event both client and server-side&#x20;
 </Tip>
@@ -25,58 +26,48 @@ hardal.track("test_event")
 You can send additional data with your events using the properties parameter:
 
 <CodeGroup>
+  ```javascript Basic Example
+  hardal.track("user_signup", {
+    properties: {
+      signup_method: "email",
+      user_type: "new",
+      referral_source: "friend",
+      platform: "web",
+      custom_param1: "user_tier",
+      custom_param2: "region_europe"
+      // ... any other properties you want to send
+    }
+  });
+  ```
 
-```javascript user_signup
-hardal.track("user_signup", {
-  properties: {
-    signup_method: "email",
-    user_type: "new",
-    referral_source: "friend",
-    platform: "web",
-    custom_param1: "user_tier",
-    custom_param2: "region_europe"
-  }
-});
-```
-
-```javascript page_view
-hardal.track("page_view", {
-  properties: {
-    page_title: "Product Details",
-    page_path: "/products/blue-jeans",
-    referrer: "https://google.com",
-    search_term: "premium jeans"
-  }
-});
-```
-
-```javascript purchase
-hardal.track("purchase", {
-  properties: {
-    transaction_id: "T_12345",
-    currency: "USD",
-    value: 125.99,
-    items: [{
-      item_id: "SKU_12345",
-      item_name: "Premium Blue Jeans",
-      item_category: "Apparel",
-      price: 70.99,
-      quantity: 1
-    }, {
-      item_id: "SKU_67890",
-      item_name: "Casual White T-Shirt",
-      item_category: "Apparel",
-      price: 25.99,
-      quantity: 2
-    }],
-    shipping_info: {
-      method: "express",
-      cost: 15.00
-    },
-    payment_method: "credit_card"
-  }
-});
-```
+  ```javascript Nested Example
+  hardal.track("purchase", {
+    properties: {
+      transaction_id: "T_12345",
+      currency: "USD",
+      value: 125.99,
+      items: [{
+        item_id: "SKU_12345",
+        item_name: "Premium Blue Jeans",
+        item_category: "Apparel",
+        price: 70.99,
+        quantity: 1
+      }, {
+        item_id: "SKU_67890",
+        item_name: "Casual White T-Shirt",
+        item_category: "Apparel",
+        price: 25.99,
+        quantity: 2
+      }],
+      shipping_info: {
+        method: "express",
+        cost: 15.00
+      },
+      payment_method: "credit_card"
+     // ... any other properties you want to send
+    }
+  });
+  ```
 </CodeGroup>
 
 <Tip>
