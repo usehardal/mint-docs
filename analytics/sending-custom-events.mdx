@@ -1,0 +1,192 @@
+---
+title: "Sending Custom Events"
+description: "Learn how to send custom events to Hardal for server-side measurement from your website or application"
+---
+
+Sending custom events with Hardal Hardal Web SDK provides a flexible way to track custom events through the `hardal.track()` method.&#x20;
+
+This guide will show you how to implement custom event tracking for different use cases.&#x20;
+
+## Basic Event Tracking&#x20;
+
+The simplest form of tracking is sending just an event name:&#x20;
+
+```javascript
+hardal.track("test_event")
+```
+
+<Tip>
+  You can run this event both client and server-side&#x20;
+</Tip>
+
+## E-commerce Marketing Event Examples:
+
+For e-commerce websites, you can track detailed purchase information:
+
+<CodeGroup>
+  ```javascript purchase
+  hardal.track("purchase", {
+    properties: {
+      transaction_id: "T_12345",
+      currency: "USD",
+      value: 125.99,
+      items: [{
+        item_id: "SKU_12345",
+        item_name: "Premium Blue Jeans",
+        item_category: "Apparel",
+        price: 70.99,
+        quantity: 1
+      }, {
+        item_id: "SKU_67890",
+        item_name: "Casual White T-Shirt",
+        item_category: "Apparel",
+        price: 25.99,
+        quantity: 2
+      }],
+      shipping_info: {
+        method: "express",
+        cost: 15.00
+      },
+      payment_method: "credit_card"
+    }
+  });
+  ```
+
+  ```javascript view_item
+  hardal.track("view_item", {
+    properties: {
+      transaction_id: "T_12345",
+      currency: "USD",
+      value: 125.99,
+      items: [{
+        item_id: "SKU_12345",
+        item_name: "Premium Blue Jeans",
+        item_category: "Apparel",
+        price: 70.99,
+        quantity: 1
+      }, {
+        item_id: "SKU_67890",
+        item_name: "Casual White T-Shirt",
+        item_category: "Apparel",
+        price: 25.99,
+        quantity: 2
+      }],
+      shipping_info: {
+        method: "express",
+        cost: 15.00
+      },
+      payment_method: "credit_card"
+    }
+  })
+  ```
+</CodeGroup>
+
+## Gaming Events Examples:
+
+For gaming applications, track player progress and interactions:
+
+<CodeGroup>
+  ```javascript level_complete
+  hardal.track("level_complete", {
+    properties: {
+      player_id: "USER_789",
+      game_id: "GAME_123",
+      level_name: "Dragon's Lair",
+      level_number: 5,
+      score: 12500,
+      time_spent: 345, // seconds
+      achievements_unlocked: ["dragon_slayer", "speed_runner"],
+      resources_collected: {
+        gold: 1500,
+        gems: 25,
+        experience_points: 750
+      },
+      player_stats: {
+        health: 85,
+        mana: 65,
+        strength: 120
+      }
+    }
+  });
+  ```
+</CodeGroup>
+
+## Server-Side Processing
+
+When these events are sent to Hardal, they are automatically enriched with additional information as shown in the data schema:
+
+### Server-generated distinct ID
+
+Unique cookieless identifier generated for each session.
+
+```javascript Example
+hr_1734601539658_5080zh7of
+```
+
+<Tip>
+  You can enable or disable the SDK from generating identifiers to ensure better compliance with marketing and analytics regulations, such as GDPR, KVKK, or other privacy standards.
+</Tip>
+
+### Page Information
+
+Details about the current page.&#x20;
+
+* **URL:** [https://example.com/products](https://example.com/products)
+
+* **Path**: /products
+
+* **Title:** Product Catalog
+
+<Tip>
+  You can enable or disable from SDK. with `autoPageView: True // False`
+</Tip>
+
+### Screen and browser details
+
+Device and browser specifications
+
+* **Resolution:** 1920x1080
+
+* **Browser:** Chrome
+
+* **Version:** 131.0.0.0
+
+### Device type
+
+Type of device being used (e.g., desktop, mobile, tablet)
+
+### Timezone
+
+User’s timezone
+
+Example: `Europe/Istanbul`
+
+### Timestamp&#x20;
+
+Server event occurrence time
+
+* `2024-12-19T09:45:39.659Z`
+
+### Query parameters
+
+Any URL query parameters, including UTMs.
+
+```javascript
+https://example.com/products?utm_source=newsletter&utm_medium=email&utm_campaign=summer_sale&utm_term=discount&utm_content=header_banner&custom_param1=user_tier&custom_param2=region_europe
+```
+
+<Tip>
+  You can include as many custom parameters as needed to custom your marketing and analytics goals, as long as they don’t conflict with reserved keywords like standard UTM parameters.
+</Tip>
+
+## Best Practices
+
+1. **Consistent Naming**: Use snake\_case for event names and properties
+
+2. **Structured Data**: Group related properties into nested objects
+
+3. **Data Types**: Use appropriate data types (strings, numbers, booleans, arrays)
+
+4. **Timestamp Handling**: Include timestamps for time-sensitive events
+
+5. **Validation**: Verify all required properties are present before sending
